@@ -21,6 +21,7 @@ create table [Tasks in projects]
 	Deadline datetime,
 
 	constraint PK_TaskInProjects primary key (ProjectID, TaskID),
+	constraint Actual_Deadline check (Deadline > GetDate()),
 	constraint FK_TasksInProjects_Project foreign key (ProjectID) references Projects(ProjectID),
 	constraint FK_TasksInProjects_Tasks foreign key (TaskID) references Tasks(TaskID)
 )
