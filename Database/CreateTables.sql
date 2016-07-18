@@ -18,7 +18,7 @@ create table [Tasks in projects]
 	ProjectID int not null,
 	TaskID int not null,
 	Closed varchar(3) not null,
-	Deadline datetime,
+	Deadline date,
 
 	constraint PK_TaskInProjects primary key (ProjectID, TaskID),
 	constraint Actual_Deadline check (Deadline > GetDate()),
