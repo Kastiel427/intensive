@@ -2,33 +2,27 @@ use GutyrchikIntensive
 go
 create table Projects
 (
-	ProjectID int primary key not null,
+	ProjectID int primary key IDENTITY(1,1) not null,
 	ProjectName varchar(30) not null
 )
 go
 create table Tasks
 (
-	TaskID int primary key not null,
+	ProjectID int not null,
+	TaskID int IDENTITY(1,1) not null,
 	TaskName varchar(30) not null,
 	Specification varchar(300) not null,
-)
-go
-create table [Tasks in projects]
-(
-	ProjectID int not null,
-	TaskID int not null,
 	Closed varchar(3) not null,
 	Deadline date,
 
-	constraint PK_TaskInProjects primary key (ProjectID, TaskID),
+	constraint PK_Tasks primary key (TaskID),
 	constraint Actual_Deadline check (Deadline > GetDate()),
-	constraint FK_TasksInProjects_Project foreign key (ProjectID) references Projects(ProjectID),
-	constraint FK_TasksInProjects_Tasks foreign key (TaskID) references Tasks(TaskID)
+	constraint FK_Tasks_Projects foreign key (ProjectID) references Projects(ProjectID),
 )
 go
 create table Tags
 (
-	TagID int primary key not null,
+	TagID int primary key IDENTITY(1,1) not null,
 	TagName varchar(30) unique not null 
 )
 go
@@ -41,3 +35,4 @@ create table [Tags in tasks]
 	constraint FK_TagsInTasks_Tasks foreign key (TaskID) references Tasks(TaskID),
 	constraint FK_TagsInTasks_Tags foreign key (TagID) references Tags(TagID)
 )
+

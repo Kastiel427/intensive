@@ -1,5 +1,5 @@
 use GutyrchikIntensive
 go
 select Deadline, count(TaskID) as 'Количество задач'
-	from [Tasks in Projects]
+	from Tasks
 	group by Deadline
