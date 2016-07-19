@@ -1,5 +1,3 @@
-use GutyrchikIntensive
-go
 create table Projects
 (
 	ProjectID int primary key IDENTITY(1,1) not null,
@@ -12,7 +10,7 @@ create table Tasks
 	TaskID int IDENTITY(1,1) not null,
 	TaskName varchar(30) not null,
 	Specification varchar(300) not null,
-	Closed varchar(3) not null,
+	Closed bit not null,
 	Deadline date,
 
 	constraint PK_Tasks primary key (TaskID),
@@ -26,7 +24,7 @@ create table Tags
 	TagName varchar(30) unique not null 
 )
 go
-create table [Tags in tasks]
+create table [TasksTags]
 (
 	TaskID int not null,
 	TagID int not null,
