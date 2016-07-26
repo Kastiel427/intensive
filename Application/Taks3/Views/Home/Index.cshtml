@@ -1,0 +1,33 @@
+﻿
+@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>Задачи</title>
+</head>
+<body>
+    <div> 
+        <h3>Задачи</h3>
+        <table>
+            <tr>
+                <td><p>ID Задачи</p></td>
+                <td><p>Название</p></td>
+                <td><p>DeadLine</p></td>
+            </tr>
+            @foreach(var b in ViewBag.Tasks)
+            {
+                <tr>
+                    <td><p>@b.TaksID</p></td>
+                    <td><p>@b.TaskName</p></td>
+                    <td><p>@b.DeadLine</p></td>
+                </tr>
+            }
+        </table>
+    </div>
+</body>
+</html>
