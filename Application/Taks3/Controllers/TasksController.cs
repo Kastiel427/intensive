@@ -72,17 +72,12 @@ namespace Taks1
     {
         public override void OnActionExecuted(HttpActionExecutedContext actionExecutedContext)
         {
-            Random random = new Random();
-            int id = random.Next(0, Program.tasks.Count);
-            if (actionExecutedContext.Exception != null)
-            {
-                actionExecutedContext.Response = actionExecutedContext.Request.CreateErrorResponse(
-                                HttpStatusCode.BadRequest, actionExecutedContext.Exception.Message);
-                Console.WriteLine("Web Api : " + actionExecutedContext.Exception.Message);
+            Guid id = Guid.NewGuid();
 
-            }
-            else
+            if (actionExecutedContext.Response != null)
+            {
                 actionExecutedContext.Response.Headers.Add("X-TEST-ID", id.ToString());
+            }
         }
     }
 

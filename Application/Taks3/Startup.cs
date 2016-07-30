@@ -12,11 +12,19 @@ namespace Task3_2
     {
         public void Configuration(IAppBuilder app)
         {
-            var confic = new HttpConfiguration();
-            confic.MapHttpAttributeRoutes();
-            confic.Routes.MapHttpRoute("default", "{controller}");
-            confic.Formatters.Remove(confic.Formatters.XmlFormatter);
-            app.UseWebApi(confic);
+            var config = new HttpConfiguration();
+            
+            config.MapHttpAttributeRoutes();
+
+            config.Filtres.Add(new HeaderIDMVC());
+            config.Filtres.Add(new HeaderID());
+
+            config.Routes.MapHttpRoute("default", "{controller}");
+
+            config.Formatters.Remove(config.Formatters.XmlFormatter);
+
+
+            app.UseWebApi(config);
         }
     }
 }
